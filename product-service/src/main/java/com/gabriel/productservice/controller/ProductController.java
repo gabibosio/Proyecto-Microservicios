@@ -24,9 +24,15 @@ public class ProductController {
         return "product created";
     }
 
-    @GetMapping("/{ids}")
+    @GetMapping("/findAll/{ids}")
     public List<Product> getProduct(@PathVariable List<Long> ids){
         System.out.println("Port: " + serverPort);
         return productService.getProducts(ids);
+    }
+
+    @GetMapping("/{id}")
+    public Product getProduct(@PathVariable Long id){
+        System.out.println("Port: " + serverPort);
+        return productService.getProduct(id);
     }
 }

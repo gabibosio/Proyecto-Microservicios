@@ -50,6 +50,26 @@ public class CartService implements ICartService{
         return cartDTO;
     }
 
+    @Override
+    public void deleteProductFromCart(Long cartId, Long productId) {
+        Cart cart = cartRepository.findById(cartId).orElse(null);
+        ProductDTO productDTO = productAPIClient.findProduct(productId);
+        assert cart != null;
+        cart.getProductsId().remove(productDTO.getId());
+        cart.setTotalPrice(cart.getTotalPrice() - productDTO.getPrice());
+        cartRepository.save(cart);
+    }
+
+    @Override
+    public void addProductToCart(Long cartId, Long productId) {
+        Cart cart = cartRepository.findById(cartId).orElse(null);
+        ProductDTO productDTO = productAPIClient.findProduct(productId);
+        assert cart != null;
+        cart.getProductsId().add(productDTO.getId());
+        cart.setTotalPrice(cart.getTotalPrice() + productDTO.getPrice());
+        cartRepository.save(cart);
+    }
+
     public CartDTO fallbackGetProducts(Throwable throwable){
         return new CartDTO(99999L,0D,null);
     }

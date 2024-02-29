@@ -24,4 +24,16 @@ public class CartController {
     public CartDTO getCart(@PathVariable Long id){
         return cartService.getCart(id);
     }
+
+    @PutMapping("/remove/{cartId}/{productId}")
+    public String removeProduct(@PathVariable Long cartId,@PathVariable Long productId){
+        cartService.deleteProductFromCart(cartId,productId);
+        return "product removed";
+    }
+
+    @PutMapping("/add/{cartId}/{productId}")
+    public String addProduct(@PathVariable Long cartId,@PathVariable Long productId){
+        cartService.addProductToCart(cartId,productId);
+        return "added product";
+    }
 }

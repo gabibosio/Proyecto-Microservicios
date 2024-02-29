@@ -11,6 +11,17 @@ services:
     networks:
       - 'tiendaelectrodomesticos-network'
 
+  mysql-db:
+    container_name: "mysql-db"
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - 'tiendaelectrodomesticos-network'
+
   product-service:
     container_name: "product-service"
     image: product:1
@@ -53,17 +64,6 @@ services:
       DATABASE_PASSWORD: root
     depends_on:
       - mysql-db
-    networks:
-      - 'tiendaelectrodomesticos-network'
-
-  mysql-db:
-    container_name: "mysql-db"
-    image: mysql
-    ports:
-      - "3306:3306"
-    environment:
-      MYSQL_PASSWORD: root
-      MYSQL_ROOT_PASSWORD: root
     networks:
       - 'tiendaelectrodomesticos-network'
 

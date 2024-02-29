@@ -9,4 +9,6 @@ public interface IProductService {
     public void create(Product product);
 
     public List<Product> getProducts(List<Long> ids);
+
+    public Product getProduct(Long id);
 }

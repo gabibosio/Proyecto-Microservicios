@@ -11,6 +11,9 @@ import java.util.List;
 @FeignClient(name = "product-service")
 public interface IProductAPIClient {
 
-    @GetMapping("/product/{ids}")
+    @GetMapping("/product/findAll/{ids}")
     public List<ProductDTO> findProducts(@PathVariable ("ids") List<Long> ids);
+
+    @GetMapping("/product/{id}")
+    public ProductDTO findProduct(@PathVariable ("id") Long id);
 }

@@ -9,4 +9,8 @@ public interface ICartService {
     public void createCart(List<Long> productsId);
 
     public CartDTO getCart(Long id);
+
+    public void deleteProductFromCart(Long cartId,Long productId);
+
+    public void addProductToCart(Long cartId,Long productId);
 }
